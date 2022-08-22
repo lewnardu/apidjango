@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -84,12 +84,14 @@ WSGI_APPLICATION = 'duasperolasplussize.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('ENGINE'),
-        'NAME': BASE_DIR / config('DB'),
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': config('ENGINE'),
+#        'NAME': BASE_DIR / config('DB'),
+#    }
+#}
+
+DATABASES = {}
 
 
 # Password validation
