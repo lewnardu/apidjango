@@ -143,5 +143,5 @@ sys.path.insert(1, os.path.join(PROJECT_ROOT, '../apps'))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = STATICFILES_DIRS
 #django_heroku.settings(locals())
