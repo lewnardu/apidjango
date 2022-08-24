@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import django_heroku
 import os, sys
 from pathlib import Path
 from decouple import config
@@ -26,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['*','.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -84,14 +85,14 @@ WSGI_APPLICATION = 'duasperolasplussize.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': config('ENGINE'),
-#        'NAME': BASE_DIR / config('DB'),
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': config('ENGINE'),
+        'NAME': BASE_DIR / config('DB'),
+    }
+}
 
-DATABASES = {}
+#DATABASES = {}
 
 
 # Password validation
@@ -143,4 +144,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-
+django_heroku.settings(locals())
