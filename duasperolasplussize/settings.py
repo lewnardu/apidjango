@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-#import django_heroku
+import django_heroku
 import os, sys
 from pathlib import Path
 from decouple import config
@@ -141,5 +141,4 @@ PROJECT_ROOT = os.path.dirname(__file__)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
