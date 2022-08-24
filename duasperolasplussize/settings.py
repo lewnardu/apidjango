@@ -135,12 +135,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 PROJECT_ROOT = os.path.dirname(__file__)
-sys.path.insert(1, os.path.join(PROJECT_ROOT, '../apps'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 #django_heroku.settings(locals())
