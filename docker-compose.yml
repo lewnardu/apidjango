@@ -1,0 +1,72 @@
+version: '3'
+
+services: 
+  web:
+    build: .
+    command: bash -c "python ./manage.py makemigrations && python ./manage.py migrate && python manage.py runserver 0.0.0.0:8085 --insecure"
+    container_name: djangoapi_web
+    restart: always
+    volumes:
+      - .:/app
+    ports: 
+      - "8085:8085"
+    depends_on:
+      - db
+    networks:
+      - frontend
+      - backend
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_HOST: "${DB_HOST}"
+      MYSQL_PORT: "${DB_PORT}"
+      MYSQL_ENGINE: "${DB_ENGINE}"
+      SECRET_KEY: "${SECRET_KEY}"
+      DEBUG: "${DEBUG}"
+      SERVER: "${SERVER}"
+      EMAIL_BACKEND: "${EMAIL_BACKEND}"
+      EMAIL_PORT: "${EMAIL_PORT}"
+      EMAIL_HOST: "${EMAIL_HOST}"
+      EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
+      EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
+      EMAIL_USE_TLS: "${EMAIL_USE_TLS}"
+      DEFAULT_FROM_EMAIL: "${DEFAULT_FROM_EMAIL}"
+  db:
+    image: "mariadb:${MYSQL_VERSON:-latest}"
+    container_name: djangoapi_db
+    ports:
+      - "3308:3306"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/mysql
+    command: ['--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+
+
+  phpmyadmin:
+    container_name: djangoapi_phpmyadmin
+    image: phpmyadmin:latest
+    restart: always
+    links:
+      - db
+    ports:
+      - 8185:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+    driver: bridge
+
+volumes:
+  db_volume:

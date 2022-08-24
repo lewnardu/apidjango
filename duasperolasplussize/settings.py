@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0t$c1yhv0+pmt*+u--x!^pzg@coen99$b1y-bw5#ivui!sw9!p"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,14 +85,25 @@ WSGI_APPLICATION = 'duasperolasplussize.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'd8as61jbc7jnq1',
+#        'USER': 'bjqapdfqixobfj',
+#        'PASSWORD': 'e3b0d2955f05955f06a0093aef5e59399f4e6479f73b8f6ca1f02b3d0c55a7c7',
+#        'HOST': 'ec2-44-205-112-253.compute-1.amazonaws.com',
+#        'PORT': '5432',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8as61jbc7jnq1',
-        'USER': 'bjqapdfqixobfj',
-        'PASSWORD': 'e3b0d2955f05955f06a0093aef5e59399f4e6479f73b8f6ca1f02b3d0c55a7c7',
-        'HOST': 'ec2-44-205-112-253.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
