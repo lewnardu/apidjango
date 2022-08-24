@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'duasperolasplussize.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd8as61jbc7jnq1',
