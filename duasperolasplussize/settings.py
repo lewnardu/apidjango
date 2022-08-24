@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'duasperolasplussize.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd8as61jbc7jnq1',
         'USER': 'bjqapdfqixobfj',
         'PASSWORD': 'e3b0d2955f05955f06a0093aef5e59399f4e6479f73b8f6ca1f02b3d0c55a7c7',
